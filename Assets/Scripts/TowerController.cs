@@ -7,19 +7,16 @@ using UnityEngine;
 
 public class TowerController : MonoBehaviour
 {
-
-	// Use this for initialization
-
 	public Material selectMaterial;
-
 	public Material defaultMaterial;
+	public float thrust = 200f;
 
 	private GameObject prev = null;
 	private RaycastHit raycastHit;
 	private GameObject selectedBlock;
 
-    	private Vector3 gravity;
-    	private Vector3 phoneMovement;
+	private Vector3 gravity;
+	private Vector3 phoneMovement;
 
 
 	void Start ()
@@ -66,40 +63,26 @@ public class TowerController : MonoBehaviour
 	}
 
 	
-    void FixedUpdate()
-    {
-        if (selectedBlock != null)
-        {
-            updateMovementDirectionForPhone();
-            selectedBlock.transform.position += phoneMovement * Time.fixedDeltaTime;
-        }
-    }
+	void FixedUpdate ()
+	{
+		if (selectedBlock != null) {
+			var acceleration = Input.acceleration; //Input.gyro.userAcceleration;
+			acceleration = new Vector3 (-acceleration.x, 0, acceleration.z);
+			Debug.Log ("Applying force: " + acceleration * thrust);
+			selectedBlock.transform.GetComponent<Rigidbody> ().AddForce (acceleration * thrust);
+		}
+	}
 
-    private void checkTouchOnBlockObject(Vector3 pos)
-    {
-        Vector3 wp = Camera.main.ScreenToWorldPoint(pos);
-        Vector2 touchPos = new Vector2(wp.x, wp.y);
-        Collider2D hit = Physics2D.OverlapPoint(touchPos);
+	private void checkTouchOnBlockObject (Vector3 pos)
+	{
+		Vector3 wp = Camera.main.ScreenToWorldPoint (pos);
+		Vector2 touchPos = new Vector2 (wp.x, wp.y);
+		Collider2D hit = Physics2D.OverlapPoint (touchPos);
 
-        Debug.Log("clicked on " + hit.GetComponent<Collider>());
+		Debug.Log ("clicked on " + hit.GetComponent<Collider> ());
 
-        if (hit && hit == gameObject.GetComponent<Collider2D>())
-        {
-
-            selectedBlock = hit.gameObject;
-        }
-    }
-
-    private void updateMovementDirectionForPhone()
-    {
-        gravity = 0.9f * gravity + 0.1f * Input.acceleration;
-
-        var acceleration = Input.gyro.userAcceleration;
-        acceleration = new Vector3(-acceleration.x, 0, acceleration.z);
-        phoneMovement = acceleration * Time.fixedDeltaTime;
-        
-        phoneMovement *= 0.999f;
-
-        Debug.Log("Velocity[Phone]: " + phoneMovement);
-    }
+		if (hit && hit == gameObject.GetComponent<Collider2D> ()) {
+			selectedBlock = hit.gameObject;
+		}
+	}
 }
