@@ -467,7 +467,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4808223420366518, guid: cb10943d86dfee743a4a4480114a6753, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4808223420366518, guid: cb10943d86dfee743a4a4480114a6753, type: 2}
       propertyPath: m_LocalScale.x
@@ -837,6 +837,15 @@ Prefab:
       propertyPath: m_TagString
       value: Block
       objectReference: {fileID: 0}
+    - target: {fileID: 1680027502385020, guid: cb10943d86dfee743a4a4480114a6753, type: 2}
+      propertyPath: m_TagString
+      value: Block
+      objectReference: {fileID: 0}
+    - target: {fileID: 23348743138936148, guid: cb10943d86dfee743a4a4480114a6753,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 39df73ff307610847b8594e9d913ee80, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb10943d86dfee743a4a4480114a6753, type: 2}
   m_IsPrefabParent: 0
@@ -857,7 +866,6 @@ GameObject:
   - component: {fileID: 927986746}
   - component: {fileID: 927986745}
   - component: {fileID: 927986744}
-  - component: {fileID: 927986749}
   m_Layer: 0
   m_Name: ARCamera
   m_TagString: Untagged
@@ -945,17 +953,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 25, y: -15, z: 0}
---- !u!114 &927986749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 927986743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 375db7eb6ad7868428577dd77cf5d211, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1089247253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1390,3 +1387,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -9.92, y: -10.769, z: -1.153}
+--- !u!1 &1979270270 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1939760066528840, guid: cb10943d86dfee743a4a4480114a6753,
+    type: 2}
+  m_PrefabInternal: {fileID: 845381947}
+--- !u!114 &1979270271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1979270270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94096da16b9a21e4b97cab94e3e64578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectMaterial: {fileID: 2100000, guid: 700fb385e8ec9cd43b9b029d23c0fc57, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: 39df73ff307610847b8594e9d913ee80, type: 2}
