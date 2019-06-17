@@ -176,7 +176,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &436354627
 GameObject:
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 436354628}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: NotBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,9 +262,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1975538793
+--- !u!1001 &992400381
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -273,15 +273,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4808223420366518, guid: cb10943d86dfee743a4a4480114a6753, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.5491843
       objectReference: {fileID: 0}
     - target: {fileID: 4808223420366518, guid: cb10943d86dfee743a4a4480114a6753, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 4808223420366518, guid: cb10943d86dfee743a4a4480114a6753, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.5261223
       objectReference: {fileID: 0}
     - target: {fileID: 4808223420366518, guid: cb10943d86dfee743a4a4480114a6753, type: 2}
       propertyPath: m_LocalRotation.x
@@ -301,7 +301,41 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4808223420366518, guid: cb10943d86dfee743a4a4480114a6753, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23282521107447208, guid: cb10943d86dfee743a4a4480114a6753,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 39df73ff307610847b8594e9d913ee80, type: 2}
+    - target: {fileID: 23834753432957224, guid: cb10943d86dfee743a4a4480114a6753,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 39df73ff307610847b8594e9d913ee80, type: 2}
+    - target: {fileID: 23383081708341840, guid: cb10943d86dfee743a4a4480114a6753,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 39df73ff307610847b8594e9d913ee80, type: 2}
+    - target: {fileID: 23493549568166414, guid: cb10943d86dfee743a4a4480114a6753,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 39df73ff307610847b8594e9d913ee80, type: 2}
+    - target: {fileID: 23851745612266076, guid: cb10943d86dfee743a4a4480114a6753,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 39df73ff307610847b8594e9d913ee80, type: 2}
+    - target: {fileID: 23325372613457806, guid: cb10943d86dfee743a4a4480114a6753,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 39df73ff307610847b8594e9d913ee80, type: 2}
+    - target: {fileID: 1939760066528840, guid: cb10943d86dfee743a4a4480114a6753, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb10943d86dfee743a4a4480114a6753, type: 2}
@@ -317,6 +351,7 @@ GameObject:
   - component: {fileID: 1982925724}
   - component: {fileID: 1982925723}
   - component: {fileID: 1982925722}
+  - component: {fileID: 1982925726}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -387,3 +422,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 22.75, y: 0, z: 0}
+--- !u!114 &1982925726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1982925721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9637c9677ec446a4aba2b68fdb01b19f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectMaterial: {fileID: 2100000, guid: 10adef01296059d4387dbfbc6e915ff5, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: 39df73ff307610847b8594e9d913ee80, type: 2}
