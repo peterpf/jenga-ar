@@ -1206,7 +1206,7 @@ MonoBehaviour:
   mPreserveChildSize: 0
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/JengaBase.xml
-  mExtendedTracking: 0
+  mExtendedTracking: 1
   mAspectRatio: 0.45035
   mImageTargetType: 0
   mWidth: 1
