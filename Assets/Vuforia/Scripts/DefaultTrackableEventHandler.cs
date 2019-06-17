@@ -90,6 +90,12 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         // Enable canvas':
         foreach (var component in canvasComponents)
             component.enabled = true;
+
+		var rigidBody = GetComponentsInChildren<Rigidbody>(true);
+		foreach (var component in rigidBody) {
+			if (component.CompareTag("Block"))
+				component.useGravity = true;
+		}
     }
 
 
@@ -110,6 +116,12 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         // Disable canvas':
         foreach (var component in canvasComponents)
             component.enabled = false;
+
+		var rigidBody = GetComponentsInChildren<Rigidbody>(true);
+		foreach (var component in rigidBody) {
+			if (component.CompareTag("Block"))
+				component.useGravity = false;
+		}
     }
 
     #endregion // PROTECTED_METHODS
