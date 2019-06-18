@@ -1,4 +1,4 @@
-# jengaAR
+# JengaAR
 
 JengaAR is an android app to play jenga in augmented reality.
 Following requirements must be met in order to play and develop the app:
