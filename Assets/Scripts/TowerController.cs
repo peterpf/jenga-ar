@@ -16,6 +16,7 @@ public class TowerController : MonoBehaviour
 	private GameObject prevSelectedBlock = null;
 
 	private RaycastHit raycastHit;
+	private bool twofingerClick = false;
 
 
 	void Start ()
@@ -68,21 +69,29 @@ public class TowerController : MonoBehaviour
 
 	void Update ()
 	{
-		if ((Input.touchCount > 0) && (Input.GetTouch (0).phase == TouchPhase.Began)) {
+		if ((Input.touchCount  ==  1) && (Input.GetTouch (0).phase == TouchPhase.Began)) {
 			handleClick (Input.GetTouch (0).position);
 		} else if (Input.GetMouseButtonDown (0)) {
 			handleClick (Input.mousePosition);
 		}
+
 	}
 
 	
 	void FixedUpdate ()
 	{
-		// Update movement of selectedBlock
-		if (selectedBlock != null) {
-			var acceleration = Input.gyro.userAcceleration;
-			acceleration = new Vector3 (-acceleration.x, 0, acceleration.z);
-			selectedBlock.transform.GetComponent<Rigidbody> ().AddForce (acceleration * thrust);
+		// Update movement of selectedBlock (if two touches detected)
+		if ((Input.touchCount  >  1) && 
+			(Input.GetTouch (0).phase == TouchPhase.Stationary || Input.GetTouch (0).phase == TouchPhase.Moved) &&
+			(Input.GetTouch (1).phase == TouchPhase.Stationary || Input.GetTouch (1).phase == TouchPhase.Moved))
+			
+			{
+			if (selectedBlock != null ) {
+				var acceleration = Input.gyro.userAcceleration;
+				acceleration = new Vector3 (-acceleration.x, 0, acceleration.z);
+				selectedBlock.transform.GetComponent<Rigidbody> ().AddForce (acceleration * thrust);
+			}
 		}
+		
 	}
 }
