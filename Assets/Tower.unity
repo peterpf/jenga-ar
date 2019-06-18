@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43979988, g: 0.4882354, b: 0.5684521, a: 1}
+  m_IndirectSpecularColor: {r: 0.43766463, g: 0.48553497, b: 0.5658133, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1341,7 +1341,6 @@ GameObject:
   - component: {fileID: 927986746}
   - component: {fileID: 927986745}
   - component: {fileID: 927986744}
-  - component: {fileID: 927986749}
   m_Layer: 0
   m_Name: ARCamera
   m_TagString: Untagged
@@ -1429,23 +1428,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &927986749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 927986743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71c6dfed4953cd24e81ec94e3b0a31d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LightOutput1: {fileID: 0}
-  LightOutput2: {fileID: 0}
-  debugging: 0
-  m_LightToEffect: {fileID: 2070164812}
-  intesityModifier: 10
-  temperatureModifier: 3000
 --- !u!1 &1089247253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1959,10 +1941,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2070164811}
-  m_LocalRotation: {x: 0.55296767, y: -0.2122116, z: 0.14816724, w: 0.79198456}
-  m_LocalPosition: {x: 0.571, y: 2.362, z: -0.99}
+  m_LocalRotation: {x: 0.614589, y: -0.2039875, z: 0.16282791, w: 0.7444171}
+  m_LocalPosition: {x: 0.571, y: 2.362, z: -1.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 69.846, y: -30.000002, z: 0}
+  m_LocalEulerAnglesHint: {x: 78.94701, y: -32.695, z: -2.4850001}
