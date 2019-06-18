@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="jengaar_logo" size="1.000000 0.450350" />
+    <ImageTarget name="jenga_logo" size="1.000000 1.000000" />
+    <ImageTarget name="jenga_base" size="1.000000 0.681885" />
+    <ImageTarget name="jenga_try_3" size="1.000000 0.485156" />
+    <ImageTarget name="jenga_try_2" size="100.000000 48.515625" />
+    <ImageTarget name="jenga_try" size="100.000000 48.515625" />
+    <ImageTarget name="jenga_paper" size="100.000000 68.188515" />
+    <ImageTarget name="jengabase" size="100.000000 48.515625" />
+    <ImageTarget name="jengaBase1" size="100.000000 48.515625" />
+  </Tracking>
+</QCARConfig>
