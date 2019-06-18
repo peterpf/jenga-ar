@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 
 using System.Collections.Generic;
 
@@ -7,11 +7,15 @@ using UnityEngine;
 
 public class TowerController : MonoBehaviour
 {
+    // The height of the tower
+    public int layerHeight = 12;
+    
 	// Color of the blocks when selected
 	public Material selectMaterial;
 
 	// Defaul block color
 	public Material defaultMaterial;
+	public float thrust = 2.0f;
 
 	// Factor to amplify accelerometer readings
 	public float thrust = 350f;
@@ -34,6 +38,26 @@ public class TowerController : MonoBehaviour
 		Debug.Log ("Started");
 
 		Input.gyro.enabled = true;
+		initTower ();
+	}
+
+	private void initTower() {
+		for (int i = 0; i < layerHeight; i++) {
+			GameObject layer = Instantiate(layerPrefab);
+			RectTransform rt = (RectTransform)layer.transform;
+			layer.transform.position =  new Vector3 (
+				gameObject.transform.position.x,
+				gameObject.transform.position.y,
+				gameObject.transform.position.z);
+			layer.transform.position.y = rt.rect.height * i + 0.01f;
+			layer.transform.eulerAngles = new Vector3(
+				layer.transform.eulerAngles.x,
+				layer.transform.eulerAngles.y + 180f * i,
+				layer.transform.eulerAngles.z
+			);
+			layer.transform.parent = gameObject.transform;
+			Debug.Log ("Created Object at position:" + layer.transform.position);
+		}
 	}
 
 
