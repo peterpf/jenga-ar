@@ -14,6 +14,9 @@ using Vuforia;
 /// </summary>
 public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
 {
+
+    private GameObject tower;
+
     #region PROTECTED_MEMBER_VARIABLES
 
     protected TrackableBehaviour mTrackableBehaviour;
@@ -91,12 +94,14 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         foreach (var component in canvasComponents)
             component.enabled = true;
 
+		// Enable gravity on blocks
 		var rigidBody = GetComponentsInChildren<Rigidbody>(true);
 		foreach (var component in rigidBody) {
 			if (component.CompareTag ("Block")) {
 				component.useGravity = true;
 			}
 		}
+		tower = GameObject.FindGameObjectWithTag ("Tower");
     }
 
 
@@ -118,11 +123,18 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         foreach (var component in canvasComponents)
             component.enabled = false;
 
+		// Disable gravity on blocks
 		var rigidBody = GetComponentsInChildren<Rigidbody>(true);
 		foreach (var component in rigidBody) {
 			if (component.CompareTag ("Block")) {
 				component.useGravity = false;
 			}
+		}
+
+		// Reset selectedBlock
+		if (tower != null) {
+			tower.GetComponent<TowerController>().selectedBlock = null;
+			tower = null;
 		}
     }
 

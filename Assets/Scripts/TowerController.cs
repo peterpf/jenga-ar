@@ -11,9 +11,10 @@ public class TowerController : MonoBehaviour
 	public Material defaultMaterial;
 	public float thrust = 200.0f;
 
+	public GameObject selectedBlock;
+
 	private GameObject prev = null;
 	private RaycastHit raycastHit;
-	private GameObject selectedBlock;
 
 	void Start ()
 	{
