@@ -93,8 +93,9 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 
 		var rigidBody = GetComponentsInChildren<Rigidbody>(true);
 		foreach (var component in rigidBody) {
-			if (component.CompareTag("Block"))
+			if (component.CompareTag ("Block")) {
 				component.useGravity = true;
+			}
 		}
     }
 
@@ -119,8 +120,9 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 
 		var rigidBody = GetComponentsInChildren<Rigidbody>(true);
 		foreach (var component in rigidBody) {
-			if (component.CompareTag("Block"))
+			if (component.CompareTag ("Block")) {
 				component.useGravity = false;
+			}
 		}
     }
 

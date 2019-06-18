@@ -9,15 +9,11 @@ public class TowerController : MonoBehaviour
 {
 	public Material selectMaterial;
 	public Material defaultMaterial;
-	public float thrust = 2000f;
+	public float thrust = 200.0f;
 
 	private GameObject prev = null;
 	private RaycastHit raycastHit;
 	private GameObject selectedBlock;
-
-	private Vector3 gravity;
-	private Vector3 phoneMovement;
-
 
 	void Start ()
 	{
@@ -66,10 +62,14 @@ public class TowerController : MonoBehaviour
 	void FixedUpdate ()
 	{
 		if (selectedBlock != null) {
-			var acceleration = Input.acceleration; //Input.gyro.userAcceleration;
+			var acceleration = Input.gyro.userAcceleration;
 			acceleration = new Vector3 (-acceleration.x, 0, acceleration.z);
-			Debug.Log ("Applying force: " + acceleration * thrust);
-			selectedBlock.transform.GetComponent<Rigidbody> ().AddForce (acceleration * thrust);
+			/*if (Mathf.Abs(acceleration.x) > 0 || Mathf.Abs(acceleration.z) > 0) {
+				acceleration = new Vector3 (1.0f, 0, 0.0f);
+			}*/
+			acceleration *= thrust;
+			Debug.Log ("Applying force: " + acceleration);
+			selectedBlock.transform.GetComponent<Rigidbody> ().AddForce (acceleration);
 		}
 	}
 
