@@ -9,81 +9,80 @@ public class TowerController : MonoBehaviour
 {
 	public Material selectMaterial;
 	public Material defaultMaterial;
-	public float thrust = 200.0f;
+	public float thrust = 2.0f;
 
+	// Selected block of the tower
 	public GameObject selectedBlock;
+	private GameObject prevSelectedBlock = null;
 
-	private GameObject prev = null;
 	private RaycastHit raycastHit;
+
 
 	void Start ()
 	{
-		Input.gyro.enabled = true;
 		Debug.Log ("Started");
+
+		Input.gyro.enabled = true;
 	}
 
 
-	private void handleClick (Ray raycast)
+	/**
+	 * Resets the material of the given object to the specified defaultMaterial
+	 **/
+	private void resetMaterialForObject (GameObject obj)
 	{
+		obj.GetComponent<MeshRenderer> ().material = defaultMaterial;
+	}
+
+
+	private void handleClick (Vector3 pos)
+	{
+		Ray raycast = Camera.main.ScreenPointToRay (pos);
+
 		if (Physics.Raycast (raycast, out raycastHit)) {
+			
+			Debug.Log ("Hit something");
+			
+			GameObject hitObject = raycastHit.transform.gameObject;
 
-			Debug.Log ("Something Hit");
+			// Check if hitObject is the same as the selectedObject - unselect if true
+			if (hitObject.Equals (selectedBlock)) {
+				Debug.Log ("Deselecting selectedBlock");
+				resetMaterialForObject (selectedBlock);
+				selectedBlock = null;
 
-			selectedBlock = raycastHit.transform.gameObject;
-
-			// if (! block.CompareTag("NotBlock"))
-			if (selectedBlock.CompareTag ("Block")) {
-
-				if (prev != null) {
-					prev.GetComponent<MeshRenderer> ().material = defaultMaterial;
+				// Check if the hitObject is a block and select it
+			} else if (hitObject.CompareTag ("Block")) {
+				Debug.Log ("Selecting block");
+				selectedBlock = hitObject;
+				if (prevSelectedBlock != null) {
+					resetMaterialForObject (prevSelectedBlock);
 				}
 
 				selectedBlock.GetComponent<MeshRenderer> ().material = selectMaterial;
-		
-				prev = selectedBlock;
 			}
+			prevSelectedBlock = selectedBlock;
 		}
 	}
+
 
 	void Update ()
 	{
 		if ((Input.touchCount > 0) && (Input.GetTouch (0).phase == TouchPhase.Began)) {
-			Ray raycast = Camera.main.ScreenPointToRay (Input.GetTouch (0).position);
-			handleClick (raycast);
-		}
-
-		if (Input.GetMouseButtonDown (0)) {
-			Debug.Log ("MouseDown");
-			Ray raycast = Camera.main.ScreenPointToRay (Input.mousePosition);
-			handleClick (raycast);
+			handleClick (Input.GetTouch (0).position);
+		} else if (Input.GetMouseButtonDown (0)) {
+			handleClick (Input.mousePosition);
 		}
 	}
 
 	
 	void FixedUpdate ()
 	{
+		// Update movement of selectedBlock
 		if (selectedBlock != null) {
 			var acceleration = Input.gyro.userAcceleration;
 			acceleration = new Vector3 (-acceleration.x, 0, acceleration.z);
-			/*if (Mathf.Abs(acceleration.x) > 0 || Mathf.Abs(acceleration.z) > 0) {
-				acceleration = new Vector3 (1.0f, 0, 0.0f);
-			}*/
-			acceleration *= thrust;
-			Debug.Log ("Applying force: " + acceleration);
-			selectedBlock.transform.GetComponent<Rigidbody> ().AddForce (acceleration);
-		}
-	}
-
-	private void checkTouchOnBlockObject (Vector3 pos)
-	{
-		Vector3 wp = Camera.main.ScreenToWorldPoint (pos);
-		Vector2 touchPos = new Vector2 (wp.x, wp.y);
-		Collider2D hit = Physics2D.OverlapPoint (touchPos);
-
-		Debug.Log ("clicked on " + hit.GetComponent<Collider> ());
-
-		if (hit && hit == gameObject.GetComponent<Collider2D> ()) {
-			selectedBlock = hit.gameObject;
+			selectedBlock.transform.GetComponent<Rigidbody> ().AddForce (acceleration * thrust);
 		}
 	}
 }

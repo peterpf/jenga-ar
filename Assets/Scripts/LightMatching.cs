@@ -49,7 +49,7 @@ public class LightMatching : MonoBehaviour
 	// camera image pixel
 
 	private Image.PIXEL_FORMAT mPixelFormat = Image.PIXEL_FORMAT.UNKNOWN_FORMAT;
-// or RGBA8888, RGB888, RGB565, YUV, GRAYSCALE
+	// or RGBA8888, RGB888, RGB565, YUV, GRAYSCALE
 
 	// Boolean flag telling whether the pixel format has been registered
 
