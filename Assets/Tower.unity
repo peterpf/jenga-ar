@@ -1879,6 +1879,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94096da16b9a21e4b97cab94e3e64578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerHeight: 12
+  layerPrefab: {fileID: 1602688832435888, guid: f876e6a10fbb9ed418cb7ae5a77d6f74,
+    type: 2}
   selectMaterial: {fileID: 2100000, guid: 700fb385e8ec9cd43b9b029d23c0fc57, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 39df73ff307610847b8594e9d913ee80, type: 2}
   thrust: 400
