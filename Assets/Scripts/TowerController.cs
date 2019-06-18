@@ -112,7 +112,7 @@ public class TowerController : MonoBehaviour
 		// Update movement of selectedBlock (if two touches detected)
 		if (twofingerClick && selectedBlock != null) {
 			var acceleration = Input.gyro.userAcceleration;
-			acceleration = new Vector3 (acceleration.x, 0, acceleration.z);
+			acceleration = new Vector3 (-acceleration.x, 0, acceleration.z);
 			selectedBlock.transform.GetComponent<Rigidbody> ().AddForce (acceleration * thrust);
 		}
 		
