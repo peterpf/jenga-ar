@@ -7,15 +7,17 @@ using UnityEngine;
 
 public class TowerController : MonoBehaviour
 {
-    // The height of the tower
-    public int layerHeight = 12;
+	// Tower height, number of layers
+	public int towerHeight = 12;
     
 	// Color of the blocks when selected
 	public Material selectMaterial;
 
 	// Defaul block color
 	public Material defaultMaterial;
-	public float thrust = 2.0f;
+
+	// Layer Prefab for generating the tower
+	public GameObject layerPrefab;
 
 	// Factor to amplify accelerometer readings
 	public float thrust = 350f;
@@ -32,6 +34,9 @@ public class TowerController : MonoBehaviour
 	// Indicated whether two fingers touch the display
 	private bool twofingerClick = false;
 
+	// Height of the layer prefab
+	private const float layerHeight = 0.15f;
+
 
 	void Start ()
 	{
@@ -41,22 +46,35 @@ public class TowerController : MonoBehaviour
 		initTower ();
 	}
 
-	private void initTower() {
-		for (int i = 0; i < layerHeight; i++) {
-			GameObject layer = Instantiate(layerPrefab);
-			RectTransform rt = (RectTransform)layer.transform;
-			layer.transform.position =  new Vector3 (
-				gameObject.transform.position.x,
-				gameObject.transform.position.y,
-				gameObject.transform.position.z);
-			layer.transform.position.y = rt.rect.height * i + 0.01f;
-			layer.transform.eulerAngles = new Vector3(
-				layer.transform.eulerAngles.x,
-				layer.transform.eulerAngles.y + 180f * i,
-				layer.transform.eulerAngles.z
+	private void initTower ()
+	{
+		for (int i = 0; i < towerHeight; i++) {
+			Debug.Log ("Spawning Layer: " + i);
+			var position = new Vector3 (
+				               gameObject.transform.position.x,
+				               gameObject.transform.position.y + layerHeight * i + 0.01f, // Add some gap between layers
+				               gameObject.transform.position.z);
+
+			Quaternion rotation = Quaternion.identity;
+			rotation.eulerAngles = new Vector3 (
+				gameObject.transform.eulerAngles.x,
+				gameObject.transform.eulerAngles.y + 90f * i,
+				gameObject.transform.eulerAngles.z
 			);
-			layer.transform.parent = gameObject.transform;
-			Debug.Log ("Created Object at position:" + layer.transform.position);
+
+			GameObject layer = Instantiate (layerPrefab, position, rotation, gameObject.transform);
+			// toggleGravityForBlocks (layer, false);
+			Debug.Log ("Created layer at position:" + layer.transform.position);
+		}
+	}
+
+	private void toggleGravityForBlocks (GameObject parent, bool enabled)
+	{
+		var rigidBody = parent.GetComponentsInChildren<Rigidbody> (true);
+		foreach (var component in rigidBody) {
+			if (component.CompareTag ("Block")) {
+				component.useGravity = enabled;
+			}
 		}
 	}
 
